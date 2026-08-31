@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: 0.0.0.0
+      # История и загруженный реестр живут в volume
+      REGISTRY_PATH: ai-initiatives-2026-08-21.xlsx
+    volumes:
+      - ai_initiatives_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  ai_initiatives_data:

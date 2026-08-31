@@ -1,0 +1,35 @@
+# dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# next / build
+.next
+out
+build
+coverage
+*.tsbuildinfo
+
+# env & secrets
+.env
+.env*.local
+!.env.example
+
+# local runtime data
+data/passport-history.json
+data/passport-history.json.migrated
+data/app.db
+data/app.db-*
+data/registry-current.xlsx
+data/registry-current.xlsx.tmp
+
+# misc
+.git
+.gitignore
+.DS_Store
+*.pem
+.cursor
+README.md
+**/*.test.ts
+vitest.config.ts

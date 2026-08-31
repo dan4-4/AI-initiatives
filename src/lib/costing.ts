@@ -57,7 +57,7 @@ export function formatRubShort(value: number): string {
 
 /** Добавляет ₽ к сумме, если знака ещё нет (для пилота/прома/оценок). */
 export function ensureRubSuffix(value: string): string {
-  let trimmed = value.trim().replace(/^\s*оценка\s*[:\-–—]?\s*/i, "");
+  const trimmed = value.trim().replace(/^\s*оценка\s*[:\-–—]?\s*/i, "");
   if (!trimmed) return "";
   if (/[₽р]|(руб)/i.test(trimmed)) return trimmed;
   // чистое число или число с пробелами/точками

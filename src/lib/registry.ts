@@ -132,7 +132,7 @@ export function getRegistryMeta(): RegistryMeta {
   const filePath = resolveRegistryPath();
   const fromUpload = filePath === REGISTRY_UPLOAD_PATH;
   let updatedAt: string | null = null;
-  let fileName = path.basename(filePath);
+  const fileName = path.basename(filePath);
 
   if (fs.existsSync(filePath)) {
     const stat = fs.statSync(filePath);
