@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+:root,
+html.dark {
+  --bg: #070b12;
+  --bg-accent: #101826;
+  --ink: #eef3f8;
+  --muted: #8b9aab;
+  --line: #243041;
+  --brand: #3dd6c6;
+  --brand-2: #6b8cff;
+  --brand-3: #b388ff;
+  --brand-soft: rgba(61, 214, 198, 0.16);
+  --accent-soft: rgba(107, 140, 255, 0.16);
+  --warn: #f0b429;
+  --warn-soft: rgba(240, 180, 41, 0.16);
+  --danger: #ff7b7b;
+  --danger-soft: rgba(255, 123, 123, 0.16);
+  --card: #121a24;
+  --input: #0b1018;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  --glow-a: rgba(61, 214, 198, 0.22);
+  --glow-b: rgba(107, 140, 255, 0.18);
+  --glow-c: rgba(179, 136, 255, 0.12);
+  --noise-opacity: 0.2;
+  --bg-grad-top: #0c121c;
+  --bg-grad-mid: #070b12;
+  --bg-grad-bot: #05080d;
+  --panel: #0f1620;
+  --cursor-glow: rgba(61, 214, 198, 0.16);
+  --cursor-glow-2: rgba(107, 140, 255, 0.12);
+  --vignette: rgba(0, 0, 0, 0.55);
+  --cursor-x: 50%;
+  --cursor-y: 35%;
+}
+
+html.light {
+  --bg: #eef3f8;
+  --bg-accent: #e0eaf5;
+  --ink: #101826;
+  --muted: #4f6275;
+  --line: #c5d3e3;
+  --brand: #0d9b8c;
+  --brand-2: #3b6fd9;
+  --brand-3: #8b5cf6;
+  --brand-soft: rgba(13, 155, 140, 0.14);
+  --accent-soft: rgba(59, 111, 217, 0.12);
+  --warn: #c47f0a;
+  --warn-soft: rgba(196, 127, 10, 0.14);
+  --danger: #d64545;
+  --danger-soft: rgba(214, 69, 69, 0.12);
+  --card: #ffffff;
+  --input: #ffffff;
+  --shadow: 0 22px 55px rgba(30, 55, 90, 0.1);
+  --glow-a: rgba(13, 155, 140, 0.28);
+  --glow-b: rgba(59, 111, 217, 0.22);
+  --glow-c: rgba(139, 92, 246, 0.14);
+  --noise-opacity: 0.35;
+  --bg-grad-top: #f5f8fc;
+  --bg-grad-mid: #e8f0f8;
+  --bg-grad-bot: #dde8f4;
+  --panel: #f7fafc;
+  --cursor-glow: rgba(13, 155, 140, 0.22);
+  --cursor-glow-2: rgba(59, 111, 217, 0.16);
+  --vignette: rgba(70, 100, 140, 0.12);
+  --cursor-x: 50%;
+  --cursor-y: 35%;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  background:
+    radial-gradient(900px 520px at 12% -12%, var(--glow-a) 0%, transparent 58%),
+    radial-gradient(760px 460px at 88% 4%, var(--glow-b) 0%, transparent 52%),
+    radial-gradient(640px 420px at 70% 90%, var(--glow-c) 0%, transparent 55%),
+    linear-gradient(
+      180deg,
+      var(--bg-grad-top) 0%,
+      var(--bg-grad-mid) 45%,
+      var(--bg-grad-bot) 100%
+    );
+  color-scheme: dark;
+}
+
+html.light body {
+  color-scheme: light;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--noise-opacity);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse at center, black 15%, transparent 72%);
+  z-index: 0;
+}
+
+html.light body::before {
+  background-image:
+    linear-gradient(rgba(30, 55, 90, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 55, 90, 0.05) 1px, transparent 1px);
+}
+
+.cursor-glow {
+  background: radial-gradient(
+    520px circle at var(--cursor-x) var(--cursor-y),
+    var(--cursor-glow) 0%,
+    var(--cursor-glow-2) 28%,
+    transparent 62%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.ambient-vignette {
+  background:
+    radial-gradient(ellipse at center, transparent 35%, var(--vignette) 100%),
+    radial-gradient(420px 280px at 0% 100%, var(--glow-c), transparent 70%),
+    radial-gradient(380px 240px at 100% 0%, var(--glow-a), transparent 70%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color-scheme: inherit;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.55s ease both;
+}
+
+.animate-rise-delay-1 {
+  animation: rise-in 0.55s ease 0.08s both;
+}
+
+.animate-rise-delay-2 {
+  animation: rise-in 0.55s ease 0.16s both;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 1.6s ease-in-out infinite;
+}
+
+.loading-bar {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--brand),
+    var(--brand-2),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.accent-border {
+  border-image: linear-gradient(135deg, var(--brand), var(--brand-2), var(--brand-3)) 1;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: #111 !important;
+  }
+
+  body::before,
+  .no-print,
+  .cursor-glow,
+  .ambient-vignette {
+    display: none !important;
+  }
+
+  .passport-print {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    background: white !important;
+    color: #111 !important;
+  }
+}
